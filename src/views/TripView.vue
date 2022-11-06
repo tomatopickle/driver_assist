@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="video-player">
+    <div class="video-player" style="overflow: hidden">
       <video ref="video" />
       <canvas width="640" height="480" ref="canvas" />
     </div>
@@ -46,7 +46,7 @@ export default {
                 navigator.mediaDevices
                     .getUserMedia({
                         video: {
-                            width: 640,
+                            width: document.documentElement.clientWidth,
                             height: document.documentElement.clientHeight
                         }
                     })
@@ -54,6 +54,8 @@ export default {
 
                         const video = videoRef;
                         this.$refs.canvas.height = document.documentElement.clientHeight
+                        this.$refs.canvas.width = document.documentElement.clientWidth
+                        this.$refs.canvas.style.marginLeft = (-1 * document.documentElement.clientWidth) + 'px'
                         video.srcObject = stream;
                         video.onloadedmetadata = () => {
                             video.play();
@@ -82,8 +84,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+html,
+body {
+  overflow-y: hidden;
+}
 .video-player {
   position: relative;
+  width: max-content;
+  display: block;
+  margin: auto;
 
   canvas,
   video {
@@ -92,7 +101,6 @@ export default {
 
   canvas {
     position: absolute;
-    margin-left: -640px;
   }
 }
 </style>

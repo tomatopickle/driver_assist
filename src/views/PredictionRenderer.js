@@ -26,9 +26,26 @@ export default class PredictionRenderer {
     predictions.forEach((prediction) => {
       const x = prediction.bbox[0];
       const y = prediction.bbox[1];
+      const height = document.documentElement.clientHeight;
+      const width = document.documentElement.clientWidth;
       // Draw the text last to ensure it's on top.
       ctx.fillStyle = "#000000";
-      ctx.fillText(prediction.class, x, y);
+      console.log(prediction.bbox);
+      ctx.fillText(
+        prediction.class +
+          "width:" +
+          Math.round((prediction.bbox[2] / width) * 100) +
+          " height:" +
+          Math.round((prediction.bbox[3] / height) * 100) +
+          " danger:" +
+          Math.round(
+            (Math.round((prediction.bbox[2] / width) * 100) /
+              Math.round((prediction.bbox[3] / height) * 100)) *
+              100
+          ),
+        x,
+        y
+      );
     });
   }
 }

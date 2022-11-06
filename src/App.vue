@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <v-app-bar v-if="currentRouteName != 'trip'" app color="primary" dark>
       <div class="d-flex align-center">
         <h2>Driver Assist</h2>
       </div>
@@ -25,5 +25,10 @@ export default {
   data: () => ({
     //
   }),
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+  },
 };
 </script>
