@@ -30,7 +30,6 @@ export default class PredictionRenderer {
       const width = document.documentElement.clientWidth;
       // Draw the text last to ensure it's on top.
       ctx.fillStyle = "#000000";
-      console.log(prediction.bbox);
       ctx.fillText(
         prediction.class +
           "width:" +
@@ -38,11 +37,12 @@ export default class PredictionRenderer {
           " height:" +
           Math.round((prediction.bbox[3] / height) * 100) +
           " danger:" +
-          Math.round(
-            (Math.round((prediction.bbox[2] / width) * 100) /
-              Math.round((prediction.bbox[3] / height) * 100)) *
-              100
-          ),
+          (100 -
+            Math.round(
+              (Math.round((prediction.bbox[2] / width) * 100) /
+                Math.round((prediction.bbox[3] / height) * 100)) *
+                100
+            )),
         x,
         y
       );

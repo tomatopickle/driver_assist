@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div class="video-player" style="overflow: hidden">
+    <div v-show="loading"><h1>Loading</h1></div>
+    <div v-show="!loading" class="video-player" style="overflow: hidden">
       <video ref="video" />
       <canvas width="640" height="480" ref="canvas" />
     </div>
@@ -47,7 +48,8 @@ export default {
                     .getUserMedia({
                         video: {
                             width: document.documentElement.clientWidth,
-                            height: document.documentElement.clientHeight
+                            height: document.documentElement.clientHeight,
+                            facingMode: 'environment'
                         }
                     })
                     .then(stream => {
