@@ -47,16 +47,16 @@ export default {
                 navigator.mediaDevices
                     .getUserMedia({
                         video: {
-                            width: document.documentElement.clientWidth,
-                            height: document.documentElement.clientHeight,
+                            width: window.innerWidth,
+                            height: window.innerHeight,
                             facingMode: 'environment'
                         }
                     })
                     .then(stream => {
 
                         const video = videoRef;
-                        this.$refs.canvas.height = document.documentElement.clientHeight
-                        this.$refs.canvas.width = document.documentElement.clientWidth
+                        this.$refs.canvas.height = window.innerHeight
+                        this.$refs.canvas.width = window.innerWidth
                         this.$refs.canvas.style.marginLeft = (-1 * document.documentElement.clientWidth) + 'px'
                         video.srcObject = stream;
                         video.onloadedmetadata = () => {

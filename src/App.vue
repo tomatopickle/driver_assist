@@ -32,3 +32,14 @@ export default {
   },
 };
 </script>
+<style>
+html,
+body {
+  height: 100%;
+}
+.v-application,
+.v-application--wrap {
+  height: 100%;
+  min-height: 100%;
+}
+</style>

@@ -26,8 +26,8 @@ export default class PredictionRenderer {
     predictions.forEach((prediction) => {
       const x = prediction.bbox[0];
       const y = prediction.bbox[1];
-      const height = document.documentElement.clientHeight;
-      const width = document.documentElement.clientWidth;
+      const height = window.innerHeight;
+      const width = window.innerWidth;
       // Draw the text last to ensure it's on top.
       ctx.fillStyle = "#000000";
       ctx.fillText(
