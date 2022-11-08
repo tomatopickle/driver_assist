@@ -1,6 +1,17 @@
 <template>
   <div>
-    <div v-show="loading"><h1>Loading</h1></div>
+    <div id="loading">
+      <div v-show="loading">
+        <h1>Loading</h1>
+        <br />
+        <v-progress-circular
+          :size="70"
+          :width="7"
+          color="teal"
+          indeterminate
+        ></v-progress-circular>
+      </div>
+    </div>
     <div v-show="!loading" class="video-player" style="overflow: hidden">
       <video ref="video" />
       <canvas width="640" height="480" ref="canvas" />
@@ -38,7 +49,11 @@ export default {
             this.$router.push('/orientationError')
         }
         const video = await this.initWebcam(this.$refs.video);
+
         this.predictionInterval = setInterval(() => {
+            if (this.loading){
+                return;
+            }
             this.analyzeVideoFrame(video);
         }, 50);
     },
@@ -114,6 +129,16 @@ body {
 
   canvas {
     position: absolute;
+  }
+}
+#loading {
+  position: fixed;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  .v-progress-circular {
+    margin: auto;
+    display: block;
   }
 }
 </style>
