@@ -41,5 +41,6 @@ body {
 .v-application--wrap {
   height: 100%;
   min-height: 100%;
+  overflow-y: auto;
 }
 </style>

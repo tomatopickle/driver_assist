@@ -14,6 +14,8 @@ import PredictionRenderer from "./PredictionRenderer";
 
 var predictionRenderer = new PredictionRenderer();
 
+
+
 export default {
     data: () => {
         return {
@@ -26,10 +28,15 @@ export default {
     props: {
     },
     async created() {
+
         this.model = await cocoSSD.load();
         this.loading = false;
     },
     async mounted() {
+
+         if (!screen.orientation.type.includes('landscape')){
+            this.$router.push('/orientationError')
+        }
         const video = await this.initWebcam(this.$refs.video);
         this.predictionInterval = setInterval(() => {
             this.analyzeVideoFrame(video);
@@ -49,15 +56,19 @@ export default {
                         video: {
                             width: window.innerWidth,
                             height: window.innerHeight,
-                            facingMode: 'environment'
+                            facingMode: 'environment',
+
                         }
                     })
                     .then(stream => {
 
                         const video = videoRef;
-                        this.$refs.canvas.height = window.innerHeight
-                        this.$refs.canvas.width = window.innerWidth
-                        this.$refs.canvas.style.marginLeft = (-1 * document.documentElement.clientWidth) + 'px'
+                        if(!this.$refs.canvas){
+                            return
+                        }
+                        this.$refs.canvas.height = window.innerHeight;
+                        this.$refs.canvas.width = window.innerWidth;
+                        this.$refs.canvas.style.marginLeft = (-1 * window.innerWidth) + 'px'
                         video.srcObject = stream;
                         video.onloadedmetadata = () => {
                             video.play();
