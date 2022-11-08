@@ -37,12 +37,11 @@ export default class PredictionRenderer {
           " height:" +
           Math.round((prediction.bbox[3] / height) * 100) +
           " danger:" +
-          (100 -
-            Math.round(
-              (Math.round((prediction.bbox[2] / width) * 100) /
-                Math.round((prediction.bbox[3] / height) * 100)) *
-                100
-            )),
+          Math.round(
+            (Math.round((prediction.bbox[2] / width) * 100) /
+              Math.round((prediction.bbox[3] / height) * 100)) *
+              100
+          ),
         x,
         y
       );
