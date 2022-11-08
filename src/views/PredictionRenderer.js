@@ -32,10 +32,10 @@ export default class PredictionRenderer {
       ctx.fillStyle = "#000000";
       ctx.fillText(
         prediction.class +
-          "width:" +
-          Math.round((prediction.bbox[2] / width) * 100) +
-          " height:" +
-          Math.round((prediction.bbox[3] / height) * 100) +
+          // "width:" +
+          // Math.round((prediction.bbox[2] / width) * 100) +
+          // " height:" +
+          // Math.round((prediction.bbox[3] / height) * 100) +
           " danger:" +
           Math.round(
             (Math.round((prediction.bbox[2] / width) * 100) /
