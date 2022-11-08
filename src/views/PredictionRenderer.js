@@ -13,6 +13,7 @@ export default class PredictionRenderer {
       const width = prediction.bbox[2];
       const height = prediction.bbox[3];
       // Draw the bounding box.
+      console.log(prediction);
       ctx.strokeStyle = color;
       ctx.lineWidth = 4;
       ctx.strokeRect(x, y, width, height);
@@ -32,15 +33,9 @@ export default class PredictionRenderer {
       ctx.fillStyle = "#000000";
       ctx.fillText(
         prediction.class +
-          // "width:" +
-          // Math.round((prediction.bbox[2] / width) * 100) +
-          // " height:" +
-          // Math.round((prediction.bbox[3] / height) * 100) +
           " danger:" +
           Math.round(
-            (Math.round((prediction.bbox[2] / width) * 100) /
-              Math.round((prediction.bbox[3] / height) * 100)) *
-              100
+            ((prediction.bbox[2] * prediction.bbox[3]) / (width * height)) * 100
           ),
         x,
         y
