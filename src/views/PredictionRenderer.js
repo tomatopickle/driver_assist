@@ -9,9 +9,9 @@ export default class PredictionRenderer {
     ctx.textBaseline = "top";
 
     predictions.forEach((prediction) => {
-      if (prediction.class != 'truck' || prediction.class != 'car' || prediction.class != 'person'){
-        return;
-      }
+      // if (prediction.class != 'truck' || prediction.class != 'car' || prediction.class != 'person'){
+      //   return;
+      // }
       const x = prediction.bbox[0];
       const y = prediction.bbox[1];
       const width = prediction.bbox[2];
@@ -28,9 +28,9 @@ export default class PredictionRenderer {
     });
 
     predictions.forEach((prediction) => {
-      if (prediction.class != 'truck' || prediction.class != 'car' || prediction.class != 'person'){
-        return;
-      }
+      // if (prediction.class != 'truck' || prediction.class != 'car' || prediction.class != 'person'){
+      //   return;
+      // }
       const x = prediction.bbox[0];
       const y = prediction.bbox[1];
       const height = window.innerHeight;
