@@ -70,13 +70,11 @@ export default {
 
       if (danger.severity == 'ultra' || danger.severity == 'high') {
         color = 'red';
-        beep(1000, 600);
-      } else {
-        if (!window.speechSynthesis.speaking) {
+        beep(100, 600);
+      }
+      if (!window.speechSynthesis.speaking) {
           window.speechSynthesis.speak(new SpeechSynthesisUtterance(danger.text));
         }
-
-      }
       this.snackbar.color = color;
       this.snackbar.show = true;
 
