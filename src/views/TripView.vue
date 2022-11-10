@@ -93,8 +93,7 @@ export default {
             video: {
               width: window.innerWidth,
               height: window.innerHeight,
-              facingMode: 'environment',
-              advanced : [{zoom: 1}]
+              facingMode: 'environment'
             }
           })
           .then(stream => {
